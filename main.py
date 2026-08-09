@@ -24,6 +24,53 @@ def cadastrar_livro(livros):
     print("Livro cadastrado.")
     return livros
 
+#essa função vai mostrar os livros cadastrados 
+def listar_livros(livros):
+    print("\n----LIVROS CADASTRADOS----")
+    if len(livros) == 0:
+        print("Nenhum livro cadastrado.")
+    else:
+        #agr percorremos todos os livros
+        for livro in livros:
+            print("-------------------")
+            print("Título:", livro["titulo"])
+            print("Autor:", livro["autor"] )
+            print ("ISBN:", livro["isbn"])
+            print("status:", livro["status"])
+        return livros
+
+
+
+
+
+# Função para emprestar um livro
+def emprestar_livro(livros):
+
+    print("\n----EMPRESTAR LIVRO----")
+
+    isbn = input("Digite o ISBN do livro: ")
+
+    # Procura o livro pelo ISBN
+    for livro in livros:
+
+        if livro["isbn"] == isbn:
+
+            # Verifica se ele já está emprestado
+            if livro["status"] == "emprestado":
+                print("Esse livro já está emprestado.")
+
+            else:
+                # Muda o status do livro
+                livro["status"] = "emprestado"
+
+                print("Livro emprestado com sucesso!")
+
+            return livros
+
+    print("Livro não encontrado.")
+
+    return livros
+    
 
 # aqui é feito o menu da biblioteca
 while True:
@@ -47,7 +94,14 @@ while True:
 
         print("Programa encerrado ")
         break
-
+        
+    elif opcao == "2":
+        livros = emprestar_livro(livros)
+        
+    elif opcao == "4":
+        livros = listar_livros(livros)    
+      
     else:
 
         print("Essa opção ainda não existe")
+        break
