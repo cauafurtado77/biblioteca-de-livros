@@ -71,6 +71,22 @@ def emprestar_livro(livros):
 
     return livros
     
+def devolver_livro(livros):
+    print("\n ---DEVOLVER LIVRO--- ")
+    isbn = input("Digite o ISBN do livro: ")
+    #identificação de qual é o livro
+    for livro in livros:
+        if livro["isbn"] == isbn:
+            if livro ["status"] == "disponível":
+                print("Esse livro não foi emprestado e está disponível.")
+            else:
+                livro["status"] = "disponível"
+                print ("Livro devolvido com sucesso.")
+            return livros
+    print("livro não encontrado.")
+    return livros
+
+
 
 # aqui é feito o menu da biblioteca
 while True:
@@ -100,8 +116,11 @@ while True:
         
     elif opcao == "4":
         livros = listar_livros(livros)    
+
+    elif opcao == "3":
+        livros = devolver_livro(livros)    
       
     else:
 
         print("Essa opção ainda não existe")
-        break
+        break 
