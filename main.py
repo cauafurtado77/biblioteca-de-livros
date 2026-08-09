@@ -86,6 +86,28 @@ def devolver_livro(livros):
     print("livro não encontrado.")
     return livros
 
+def buscar_livro(livros):
+    print("\n --- buscar livros ---")
+    busca = input("Digite o título ou o autor do livro:  ").lower()
+    encontrado = False
+    for livro in livros:
+        #busca e ve se oq foi escrito tem no nome dos livros ou no dos autores.
+        #o .lower serve para considerar a pesquisa maiascula e minuscula, porque tranforma tudo em minusculo
+        if busca in livro["titulo"].lower() or busca in livro["autor"].lower():
+            print("_______________________")
+            print ("Título: ", livro["titulo"])
+            print ("Autor: ", livro["autor"])
+            print("Ano:", livro["ano"])
+            print("ISBN:", livro["isbn"])
+            print("Status: ", livro["status"])
+
+            encontrado = True 
+    if encontrado == False: 
+        print("Nenhum livro foi encontrado.")
+    return livros            
+    
+        
+
 
 
 # aqui é feito o menu da biblioteca
@@ -119,6 +141,9 @@ while True:
 
     elif opcao == "3":
         livros = devolver_livro(livros)    
+
+    elif opcao == "5":
+        livros = buscar_livro(livros)    
       
     else:
 
