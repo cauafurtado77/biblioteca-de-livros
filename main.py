@@ -104,9 +104,33 @@ def buscar_livro(livros):
             encontrado = True 
     if encontrado == False: 
         print("Nenhum livro foi encontrado.")
-    return livros            
-    
-        
+    return livros  
+
+# funcao para ordenar todos os livros
+def ordenar_livros(livros):
+    print("\n ---ORDENAR LIVROS--- ")
+    print("1 - por título")
+    print("2 - por autor")
+    print("3 - por ano")
+    opcao = input("Escolha uma opção: ")
+    if opcao == "1":
+        #.sort usado para colocar o comando de lista em ordem e o lambda diz qual
+        #informação do livro deve ser usada para a ordem 
+        livros.sort(key=lambda livro: livro["titulo"].lower())
+        print("livros ordenados por título.")
+    elif opcao == "2":  
+        livros.sort(key=lambda livro: livro["autor"].lower())
+        print("livros ordenados por autor.")
+    elif opcao == "3":
+        livros.sort(key=lambda livro: livro["ano"].lower())
+        print("livros ordenados por ano.")
+    else:
+        print("operação invalida.")
+    return livros
+
+
+
+
 
 
 
@@ -145,6 +169,8 @@ while True:
     elif opcao == "5":
         livros = buscar_livro(livros)    
       
+    elif opcao == "6":
+        livros == ordenar_livros(livros)  
     else:
 
         print("Essa opção ainda não existe")
