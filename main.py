@@ -1,6 +1,23 @@
-# lista dos livros
+import csv
+#lista dos livros
 livros = []
+'''função do csv para salvar livros em um arquivo, onde cada linha vai ser um livro e as colunas vao conter as informações
+o newline="" serve para não colocar uma linha em branco entre cada livro, e o encoding="utf-8" serve para que os caracteres especiais sejam salvos corretamente
+o enconding utf-8 faz uma transcrição exata do que voce esta escrevendo e não vai ter problema com acentos e caracteres especiais, como ç, ã, etc.
+'''
 
+def salvar_livros(livros):
+    def salvar_livros(livros):
+
+     with open("livros.csv", "w", newline="", encoding="utf-8") as arquivo:
+
+        campos = ["titulo", "autor", "ano", "isbn", "status"]
+
+        escritor = csv.DictWriter(arquivo, fieldnames=campos)
+
+        escritor.writeheader()
+
+        escritor.writerows(livros)
 
 # função para cadastrar um livro
 def cadastrar_livro(livros):
@@ -22,6 +39,7 @@ def cadastrar_livro(livros):
 
     livros.append(livro)
     print("Livro cadastrado.")
+    salvar_livros(livros)
     return livros
 
 #essa função vai mostrar os livros cadastrados 
@@ -122,17 +140,11 @@ def ordenar_livros(livros):
         livros.sort(key=lambda livro: livro["autor"].lower())
         print("livros ordenados por autor.")
     elif opcao == "3":
-        livros.sort(key=lambda livro: livro["ano"].lower())
+        livros.sort(key=lambda livro: livro["ano"])
         print("livros ordenados por ano.")
     else:
         print("operação invalida.")
     return livros
-
-
-
-
-
-
 
 # aqui é feito o menu da biblioteca
 while True:
@@ -170,8 +182,10 @@ while True:
         livros = buscar_livro(livros)    
       
     elif opcao == "6":
-        livros == ordenar_livros(livros)  
+        livros = ordenar_livros(livros)  
     else:
 
         print("Essa opção ainda não existe")
         break 
+
+
