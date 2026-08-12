@@ -7,8 +7,6 @@ o enconding utf-8 faz uma transcricao exata do que voce esta escrevendo e não v
 '''
 
 def salvar_livros(livros):
-    def salvar_livros(livros):
-
      with open("livros.csv", "w", newline="", encoding="utf-8") as arquivo:
 
         campos = ["titulo", "autor", "ano", "isbn", "status"]
@@ -48,7 +46,7 @@ def carregar_livros():
     programa pela a funcao de leitura do csv
     '''
 
-livros = carregar_livros
+livros = carregar_livros()
 
 # função para cadastrar um livro
 def cadastrar_livro(livros):
