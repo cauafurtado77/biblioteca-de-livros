@@ -1,9 +1,9 @@
 import csv
-#lista dos livros
 livros = []
-'''função do csv para salvar livros em um arquivo, onde cada linha vai ser um livro e as colunas vao conter as informações
-o newline="" serve para não colocar uma linha em branco entre cada livro, e o encoding="utf-8" serve para que os caracteres especiais sejam salvos corretamente
-o enconding utf-8 faz uma transcrição exata do que voce esta escrevendo e não vai ter problema com acentos e caracteres especiais, como ç, ã, etc.
+
+'''funcao do csv para salvar livros em um arquivo, onde cada linha vai ser um livro e as colunas vao conter as informações
+o newline="" serve para nao colocar uma linha em branco entre cada livro, e o encoding="utf-8" serve para que os caracteres especiais sejam salvos corretamente
+o enconding utf-8 faz uma transcricao exata do que voce esta escrevendo e não vai ter problema com acentos e caracteres especiais, como ç, ã, etc.
 '''
 
 def salvar_livros(livros):
@@ -18,6 +18,37 @@ def salvar_livros(livros):
         escritor.writeheader()
 
         escritor.writerows(livros)
+
+
+
+# essa funçao está aqui para carregar os livros salvos no arquivo CSV
+def carregar_livros():
+
+    try:
+        # Abre o arquivo CSV para ler os livros que já foram salvos
+        #o try é usado junto com except, ele confere se tem problema para o except resolver
+        with open("livros.csv", "r", newline="") as arquivo_csv:
+
+            # lê cada linha do csv e transforma em um dicionario
+            leitor = csv.DictReader(arquivo_csv)
+
+            # coloca todos os livros lidos dentro de uma lista(que é nova )
+            livros = list(leitor)
+
+            # retorna a lista de livros para o programa
+            return livros
+
+    # caso o arquivo ainda não exista, começa com uma lista vazia para colocar os livros 
+    except FileNotFoundError:
+        return []
+
+
+    '''  Com foi pedido a lista de livros deve ser salva atraves do csv, então
+    agora esta sendo substituido a lista em branco que não salva os livros ao fim do 
+    programa pela a funcao de leitura do csv
+    '''
+
+livros = carregar_livros
 
 # função para cadastrar um livro
 def cadastrar_livro(livros):
